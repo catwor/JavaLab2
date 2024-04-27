@@ -2,8 +2,16 @@ package org.example;
 
 import java.util.Stack;
 
+/**
+ * Класс для вычисления математических выражений, содержащих цифры, операторы и скобки.
+ */
 public class ExpressionEvaluation {
 
+  /**
+   * Вычисляет математическое выражение.
+   * @param expression математическое выражение для вычисления
+   * @return результат вычисления выражения
+   */
   public static double evaluateExpression(String expression) {
     if (!isValidExpression(expression)) {
       System.out.println("Некорректное выражение");
@@ -46,6 +54,13 @@ public class ExpressionEvaluation {
     return numbers.pop();
   }
 
+  /**
+   * Выполняет математическую операцию.
+   * @param operator оператор для выполнения
+   * @param b второй операнд
+   * @param a первый операнд
+   * @return результат операции
+   */
   private static double performOperation(char operator, double b, double a) {
     switch (operator) {
       case '+':
@@ -64,6 +79,11 @@ public class ExpressionEvaluation {
     }
   }
 
+  /**
+   * Возвращает приоритет оператора.
+   * @param operator оператор
+   * @return приоритет оператора
+   */
   private static int precedence(char operator) {
     switch (operator) {
       case '+':
@@ -77,10 +97,20 @@ public class ExpressionEvaluation {
     }
   }
 
+  /**
+   * Проверяет, является ли символ оператором.
+   * @param ch символ
+   * @return true, если символ является оператором, иначе false
+   */
   private static boolean isOperator(char ch) {
     return ch == '+' || ch == '-' || ch == '*' || ch == '/';
   }
 
+  /**
+   * Проверяет, является ли выражение корректным.
+   * @param expression выражение
+   * @return true, если выражение корректно, иначе false
+   */
   private static boolean isValidExpression(String expression) {
     Stack<Character> stack = new Stack<>();
     for (char ch : expression.toCharArray()) {
@@ -95,6 +125,12 @@ public class ExpressionEvaluation {
     return stack.isEmpty();
   }
 
+  /**
+   * Проверяет, являются ли скобки парными.
+   * @param left  левая скобка
+   * @param right правая скобка
+   * @return true, если скобки парные, иначе false
+   */
   private static boolean isMatchingPair(char left, char right) {
     return (left == '(' && right == ')') ||
         (left == '[' && right == ']') ||
